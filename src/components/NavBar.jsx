@@ -9,7 +9,7 @@ export default function NavBar() {
   };
   return (
     <header className='h-24 flex justify-center items-center font-sans font-bold'>
-    <nav className='flex tex-lg w-full md:w-[93%] justify-between items-center'>
+    <nav className='flex tex-lg w-full md:w-[93%] justify-between items-center bg-emerald-50 rounded-lg shadow-lg'>
       <a href="#" className='text-2xl'>
         My Tinerary
       </a>
