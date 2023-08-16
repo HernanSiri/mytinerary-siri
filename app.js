@@ -13,6 +13,8 @@ import logger from "morgan"           // para registrar cada una de las peticion
 
 //var indexRouter = require('./routes/index');// solo vamos a configurar las rutas de back principal
 import indexRouter from "./routes/index.js" // este errutador va a llamar a todos los recursos
+import notFoundHandler from './middlewares/notFoundHandler.js'
+import errorHandler from './middlewares/errorHandler.js'
 
 let app = express();                       // ejecutando el modulo express: creo una app de backend ( servidor)
 
@@ -34,18 +36,10 @@ app.use('/api', indexRouter);  //obligo al servidor a que use las rutas del enrr
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+app.use(notFoundHandler);
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(errorHandler);
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+
 export default app
