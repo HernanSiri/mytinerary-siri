@@ -2,6 +2,7 @@
 import app from '../app.js'; // configuracion del servidor
 import debug from 'debug'; // modulo de debugeo
 import http from 'http'; // modulo para crear servidores HTTP
+import { connect } from 'mongoose'; //metodo para conctarme a la base de datos
 
 // PORT
 //process.env guarda las cunfiguraciones de las variables de entorno
@@ -13,7 +14,12 @@ app.set('port', port);
 // START SERVING
 
 let server = http.createServer(app); //creo un servidor normalizado con HTTP
-let ready = ()=> console.log("server ready on port"+port);
+let ready = ()=> {
+  console.log("server ready on port"+port);
+  connect(process.env.LINK_DB)  // el metodo connect devuelve una promesa: trabajar con then-catch o async-await
+    .then(()=>console.log("database connected"))
+    .catch(err=>console.log(err))
+}
 server.listen(port,ready); // con el metodo listen escucho el puerto para que empiece a funvionar (levantarse)
 server.on("error", onError);
 server.on("listening", onListening);
