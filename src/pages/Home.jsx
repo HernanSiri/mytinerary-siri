@@ -17,7 +17,7 @@ export default function Home() {
         []
         )
         return (
-            <div className=' '>
+            <div className='h-screen '>
               <p className='text-center mt-8 text-lg text-gray-500 rounded-full bg-white/50 bg-cover grow'>
                 Ready to explore? Check out our <a href="/cities" className='text-emerald-500 hover:underline'>Cities</a> section to discover amazing destinations!
               </p>
