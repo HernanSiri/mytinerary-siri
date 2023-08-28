@@ -2,17 +2,23 @@ import { useState,useEffect } from "react"
 import Arrow from "../components/Arrow"
 import axios from "axios"
 import Carousel from "../components/Carousel"
+import apiUrl from "../../apiUrl"
+import { useSelector,useDispatch } from "react-redux"
+import city_actions from '../store/actions/cities'
+const { read_carousel } = city_actions
 
 export default function Home() {
     
     const [show,setShow] = useState(true)
     const [data,setData] = useState([])
+    const carousel = useSelector(store=>store.cities.carousel)
+    const dispatch = useDispatch()
    
       useEffect(
         ()=>{
-          axios('/data.json')
-           .then(res=>setData(res.data))
-           .catch(err=>console.log(err))
+          if (carousel.length===0) {
+            dispatch(read_carousel())
+          }
         },
         []
         )
@@ -31,7 +37,7 @@ export default function Home() {
                     View More
                   </a>
                 </div>
-                <Carousel data={data} />
+                <Carousel data={carousel} />
               </main>
             </div>
           )
