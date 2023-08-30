@@ -2,7 +2,7 @@ import { Link as Anchor } from "react-router-dom";
 
 export default function CardCity({ src, alt, text, _id }) {
   return (
-    <div className="mx-3 mt-6 self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+    <div className="mx-3 mt-6 self-start rounded-lg bg-emerald-50 shadow-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
       <Anchor to={"/city/"+_id}>
         <img className="w-full h-44 rounded-t-lg object-cover" src={src} alt={alt} />
       </Anchor>
