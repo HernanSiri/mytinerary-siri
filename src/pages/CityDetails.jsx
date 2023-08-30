@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
-import apiUrl from '../../apiUrl';
+import city_actions from '../store/actions/cities';
+import { useDispatch, useSelector } from 'react-redux';
+const { read_city } = city_actions;
 
-export default function CityDetails() {
+export default function CityDetails({src, alt, text, id }) {
   const { city_id } = useParams()
-  const [city, setCity] = useState([])
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios(apiUrl + 'cities/'+ city_id)
+    dispatch(read_city({ id:city_id }))
     
-      .then((res) =>{ setCity(res.data.response)
-        console.log(city)})
-      .catch((err) => console.log(err));
   }, []);
+
+  const city = useSelector(store=>store.cities.city)
+  console.log(city);
 
   return (
     <div className='rounded-lg bg-white/70 bg-cover grow p-6'>
