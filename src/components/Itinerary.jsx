@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Activity from "./Activity";
 
-export default function Itinerary({ name, price, duration, tags, photo }) {
+export default function Itinerary({ name, price, duration, tags, photo, admin_id, admin_photo }) {
   const [show, setShow] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -22,8 +22,8 @@ export default function Itinerary({ name, price, duration, tags, photo }) {
           <div className="flex w-[650px] h-[120px] mt-10 py-5 m-6 items-center justify-between ">
             <div className="flex flex-col items-center justify-start p-2.5 w-[100px]">
               <p className="flex text-md font-bold">User:</p>
-              <img className="flex p-2" src="../../img/perfil.png" alt="User" />
-              <p className="flex text-center text-sm">Mazinger Z</p>
+              <img className="rounded-full flex p-2" src={admin_photo} alt="User" />
+              <p className="flex text-center text-sm">{admin_id}</p>
             </div>
             <div className="flex flex-col items-center justify-start p-2.5 w-[200px] h-[120px] ">
               <p className="flex items-center justify-start text-md font-bold">Hashtags:</p>
