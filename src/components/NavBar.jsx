@@ -34,7 +34,7 @@ export default function NavBar() {
           <Anchor to="cities" href="#" className="animate-pulse">Cities</Anchor>
         </li>
         <li>
-          <Anchor to="signin"
+          <Anchor to="/auth/signin"
             href="#"
             className='flex items-center bg-emerald-300 p-2 rounded-lg text-white drop-shadow-lg'
           >

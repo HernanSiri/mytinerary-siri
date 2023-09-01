@@ -14,7 +14,7 @@ export default function Form() {
   }
 
   return (
-    <section className="flex items-center justify-center h-screen bg-gray-100 dark:bg-gray-800">
+    <section className="flex items-center justify-center h-screen ">
       <form className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold mb-4 text-center text-emerald-600">
           Sign In

@@ -5,6 +5,7 @@ import CardCity from '../components/CardCity.jsx';
 import CardError from '../components/CardError';
 import { useSelector,useDispatch } from 'react-redux';
 import city_actions from '../store/actions/cities.js';
+import CardPolaroid from '../components/CardPolaroid.jsx';
 const { read_cities } = city_actions
 
 export default function Cities() {

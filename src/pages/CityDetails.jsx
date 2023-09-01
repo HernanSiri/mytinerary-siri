@@ -39,20 +39,33 @@ export default function CityDetails({ src, alt, text, id }) {
         <p className='text-black mt-4'>{city.smalldescription}</p>
       </div>
       <div className='flex justify-center mt-6'>
-        <Link to="/cities" className='px-4 py-2 bg-emerald-300 rounded-lg text-white'>
+        <Link to="/cities" className='shadow-lg px-4 py-2 bg-emerald-300 rounded-lg text-white'>
           Back to Cities
         </Link>
         <div className="flex items-end justify-center pl-10">
-          <div onClick={() => setShow(!show)} className='px-4 py-2 bg-emerald-300 rounded-lg text-white cursor-pointer'>
-            {show ? ('Close') : ('View Itineraries ↓')}
+          <div onClick={() => setShow(!show)} className='shadow-lg px-4 py-2 bg-emerald-300 rounded-lg text-white cursor-pointer'>
+            {show ? ('Close ▲') : ('View Itineraries ▼')}
           </div>
         </div>
       </div>
 
       <div>
-                    {itinerary.length !=0 ?
-                    show && itinerary.map(each => <Itinerary key={each._id} name={each.name} price={each.price} duration={each.duration} tags={each.tags} photo={each.photo} />):<div><NotFoundItinerary/></div>}
-                </div>
+  {show && (itinerary.length !== 0 ? (
+    itinerary.map(suegra => (
+      <Itinerary
+        key={suegra._id}
+        name={suegra.name}
+        price={suegra.price}
+        duration={suegra.duration}
+        tags={suegra.tags}
+        photo={suegra.photo}
+      />
+    ))
+  ) : (
+    <NotFoundItinerary />
+  ))}
+</div>
+
 
     </div>
   );
