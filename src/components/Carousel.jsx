@@ -34,7 +34,9 @@ export default function Carousel({ data }) {
         <div className="xl:w-1/2 flex justify-center items-center">
                 <Arrow direction="M15.75 19.5L8.25 12l7.5-7.5" onClick={prev_slide}/>
                 <div className="flex flex-grawp  w-11/12 justify-center">
-                    {data.slice(counter, counterTo).map(each => <CardPolaroid key={each.id} src={each.photo} alt={each.id} text={each.city} className="fade-in-card" />)}
+                    {data.slice(counter, counterTo).map(each => 
+                        
+                        <CardPolaroid key={each._id} _id={each._id} src={each.photo} alt={each._id} text={each.city} className="fade-in-card" />)}
                 </div>
                 <Arrow direction="M8.25 4.5l7.5 7.5-7.5 7.5" onClick={next_slide}/>
             </div>

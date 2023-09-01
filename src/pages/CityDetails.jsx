@@ -1,42 +1,72 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
-import apiUrl from '../../apiUrl';
+import city_actions from '../store/actions/cities';
+import { useDispatch, useSelector } from 'react-redux';
+import itinerary_actions from '../store/actions/itineraries';
+const { read_city } = city_actions;
+const { read_itineraries_from_city } = itinerary_actions;
+import Itinerary from '../components/Itinerary';
+import NotFoundItinerary from '../components/NotFoundItinerary';
 
-export default function CityDetails() {
-  const { _id } = useParams();
-  const [city, setCity] = useState([]);
+export default function CityDetails({ src, alt, text, id }) {
+  const { city_id } = useParams()
+  const dispatch = useDispatch();
+  const city = useSelector(store => store.cities.city)
+  const itinerary = useSelector(store => store.itineraries.itineraries_from_city)
+  const [show, setShow] = useState(false)
 
   useEffect(() => {
-    axios(apiUrl + 'cities/city/:'+ _id)
-      .then((res) =>{ setCity(res.data.response)
-        console.log(city)})
-      .catch((err) => console.log(err));
+    dispatch(read_city({ id: city_id }))
+    dispatch(read_itineraries_from_city({ id: city_id }))
+    console.log(itinerary)
   }, []);
 
   return (
-    <div className='rounded-full bg-white/50 bg-cover grow'>
-      <h1 className='animate-pulse text-black text-[40px] flex justify-center items-center'>
+    <div className='rounded-lg bg-white/70 bg-cover grow p-6'>
+      <h1 className='animate-pulse text-4xl text-black text-center'>
         City under construction
       </h1>
-      <div className='flex justify-center mt-4'>
-        <Link to="/cities" className='px-4 py-2 bg-emerald-300 rounded-lg text-white'>
+
+      <div className='text-black mt-10 text-4xl text-center font-bold'>
+        <h1>{city.city}</h1>
+      </div>
+      <div className='mt-6'>
+        <img className='rounded-md w-full' src={city.photo} alt={city.country} />
+      </div>
+      <div className='mt-6'>
+        <p className='text-black mt-4'>{city.featuredlocation}</p>
+        <p className='text-black mt-4'>{city.description}</p>
+        <p className='text-black mt-4'>{city.smalldescription}</p>
+      </div>
+      <div className='flex justify-center mt-6'>
+        <Link to="/cities" className='shadow-lg px-4 py-2 bg-emerald-300 rounded-lg text-white'>
           Back to Cities
         </Link>
+        <div className="flex items-end justify-center pl-10">
+          <div onClick={() => setShow(!show)} className='shadow-lg px-4 py-2 bg-emerald-300 rounded-lg text-white cursor-pointer'>
+            {show ? ('Close ▲') : ('View Itineraries ▼')}
+          </div>
+        </div>
       </div>
-      
-      <div className='text-black mt-10 flex justify-center items-center tex-xl'>
-        <h1>City Details {city.tex}</h1>
-      </div>
+
       <div>
-          <img className='rounded-md' src="{city.photo}" alt="{city.country}" />
-      </div>
-      <div>
-        <p className='tex-black mt-8 ml-5'>{city.featuredlocation}</p>
-        <p className='tex-black mt-8 ml-5'>{city.description}</p>
-        <p className='tex-black mt-8 ml-5'>{city.smalldescription}</p>
-      </div>
+  {show && (itinerary.length !== 0 ? (
+    itinerary.map(suegra => (
+      <Itinerary
+        key={suegra._id}
+        name={suegra.name}
+        price={suegra.price}
+        duration={suegra.duration}
+        tags={suegra.tags}
+        photo={suegra.photo}
+      />
+    ))
+  ) : (
+    <NotFoundItinerary />
+  ))}
+</div>
+
+
     </div>
   );
 }
-
