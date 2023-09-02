@@ -22,13 +22,20 @@ export default function Itinerary({ name, price, duration, tags, photo, admin_id
           <div className="flex w-[650px] h-[120px] mt-10 py-5 m-6 items-center justify-between ">
             <div className="flex flex-col items-center justify-start p-2.5 w-[100px]">
               <p className="flex text-md font-bold">User:</p>
-              <img className="rounded-full flex p-2" src={admin_photo} alt="User" />
+              <img className="w-[90px] h-[80px] rounded-full flex p-2" src={admin_photo} alt="User" />
               <p className="flex text-center text-sm">{admin_id}</p>
             </div>
-            <div className="flex flex-col items-center justify-start p-2.5 w-[200px] h-[120px] ">
-              <p className="flex items-center justify-start text-md font-bold">Hashtags:</p>
-              <p className="flex items-center justify-start text-center text-sm">{tags}</p>
-            </div>
+            <div className="flex flex-col items-center justify-start p-2.5 w-[200px] h-[120px]">
+  <p className="flex items-center justify-start text-md font-bold">Hashtags:</p>
+  <div className="flex flex-col items-center justify-start text-center text-sm">
+    {tags.map((tag, index) => (
+      <span key={index} className=" text-black border-2 px-2 py-1 mb-2">
+        {tag}
+      </span>
+    ))}
+  </div>
+</div>
+
             <div className="flex flex-col items-center justify-start p-2.5 w-[100px] h-[120px] ">
               <p className="flex items-center justify-start text-md font-bold">Duration:</p>
               <p className="flex items-center justify-start text-center text-sm">{duration}</p>
