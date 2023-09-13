@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import Activity from "./Activity";
+import ItinerariesDetail from "./ItinerariesDetail";
+//import Activity from "./Activity";
 
-export default function Itinerary({ name, price, duration, tags, photo }) {
+
+export default function Itinerary({ name, price, duration, tags, photo, admin_id, admin_photo, _id }) {
   const [show, setShow] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
   return (
-    <main>
+    <main >
       <div className="flex flex-col items-center justify-center mt-5 px-20">
         <div className="w-[750px] h-[850px] flex flex-grow flex-col items-center justify-start bg-emerald-50 rounded-lg shadow-lg mb-4">
           <p className="flex items-center justify-center mb-5 text-[28px] font-bold m-4">
@@ -22,13 +24,21 @@ export default function Itinerary({ name, price, duration, tags, photo }) {
           <div className="flex w-[650px] h-[120px] mt-10 py-5 m-6 items-center justify-between ">
             <div className="flex flex-col items-center justify-start p-2.5 w-[100px]">
               <p className="flex text-md font-bold">User:</p>
-              <img className="flex p-2" src="../../img/perfil.png" alt="User" />
-              <p className="flex text-center text-sm">Mazinger Z</p>
+              <img className="w-[90px] h-[80px] rounded-full flex p-2" src={admin_photo} alt="User" />
+              <p className="flex text-center text-sm">{admin_id}</p>
             </div>
-            <div className="flex flex-col items-center justify-start p-2.5 w-[200px] h-[120px] ">
+            <div className="flex flex-col items-center justify-start p-2.5 w-[200px] h-[120px]">
               <p className="flex items-center justify-start text-md font-bold">Hashtags:</p>
-              <p className="flex items-center justify-start text-center text-sm">{tags}</p>
+              <div className="flex flex-col items-center justify-start text-center text-sm">
+                {tags.map((tag, index) => (
+                  <span key={index} className=" text-black border-2 px-2 py-1 mb-2">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
+
+
             <div className="flex flex-col items-center justify-start p-2.5 w-[100px] h-[120px] ">
               <p className="flex items-center justify-start text-md font-bold">Duration:</p>
               <p className="flex items-center justify-start text-center text-sm">{duration}</p>
@@ -97,7 +107,8 @@ export default function Itinerary({ name, price, duration, tags, photo }) {
             )}
           </div>
         </div>
-        {show ? <Activity /> : <h1></h1>}
+        {/* {show ? <Activity /> : <h1></h1>} */}
+        {show && <ItinerariesDetail itinerary_id={_id} />}
       </div>
     </main>
   );

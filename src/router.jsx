@@ -8,6 +8,8 @@ import CityDetails from "./pages/CityDetails";
 import NotFound from "./pages/NotFound"
 import FormSignUp from "./pages/FormSignUp";
 import FormSignIn from "./pages/FormSignIn";
+import Activities from "./components/Activities";
+import Profile from "./pages/Profile"
 
 
 
@@ -20,9 +22,11 @@ const router = createBrowserRouter([
             { path:"/signin", element: <SignIn />},
             { path:"/signup", element: <SignUp />},
             { path:"/cities", element: <Cities />},
+            { path: "/activities/:itinerary_id", element: <Activities />},
             { path:"/city/:city_id", element: <CityDetails />},
             { path: "/auth/signup", element: <FormSignUp /> },
             { path: "/auth/signin", element: <FormSignIn /> },
+            { path: "/profile", element: <Profile /> },
             { path: "/*", element: <NotFound />}
             
             
