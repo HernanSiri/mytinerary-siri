@@ -8,7 +8,7 @@ const read_itineraries_from_city = createAsyncThunk(
         //console.log(id)
         try {
             let data = await axios(apiUrl+'itineraries?city_id='+id)
-            console.log(data);
+            //console.log(data);
             return {
                 itineraries_from_city: data.data.response
             }

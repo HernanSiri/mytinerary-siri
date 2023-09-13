@@ -53,12 +53,15 @@ export default function CityDetails({ src, alt, text, id }) {
   {show && (itinerary.length !== 0 ? (
     itinerary.map(suegra => (
       <Itinerary
+        admin_id={suegra.city_id.admin_id.name}
+        admin_photo= {suegra.city_id.admin_id.photo}
         key={suegra._id}
         name={suegra.name}
         price={suegra.price}
         duration={suegra.duration}
         tags={suegra.tags}
         photo={suegra.photo}
+        _id={suegra._id}
       />
     ))
   ) : (
